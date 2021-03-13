@@ -1,4 +1,6 @@
-package nmu.jmh.knightstour.model;
+package nmu.jmh.knightstour.search.basic;
+
+import nmu.jmh.knightstour.model.Position;
 
 /**
  * Representation of a chess board holding a state with visited and unvisited
@@ -12,11 +14,11 @@ public class Board {
 	private static final int VISITED = 1;
 	private static final int UNVISITED = 0;
 
-	final int[][] state;
-	final int[][] moveOrder;
-	final int maxRowIndex;
-	final int maxColumnIndex;
-	int moves = 0;
+	private final int[][] state;
+	private final int[][] moveOrder;
+	private final int maxRowIndex;
+	private final int maxColumnIndex;
+	private int moves = 0;
 
 	public Board(int rows, int columns) {
 		this.maxRowIndex = rows - 1;
@@ -80,6 +82,6 @@ public class Board {
 	}
 
 	private int digits(int number) {
-		return number == 0 ? 1 : (int) (Math.log10(number) + 1);
+		return String.valueOf(number).length();
 	}
 }

@@ -1,10 +1,9 @@
-package nmu.jmh.knightstour.search;
+package nmu.jmh.knightstour.search.basic;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.function.Consumer;
 
-import nmu.jmh.knightstour.model.Board;
 import nmu.jmh.knightstour.model.Position;
 
 public class KnightsTour {
@@ -33,8 +32,22 @@ public class KnightsTour {
 		}
 	}
 
+	private Position chooseNextMove(Board board, Collection<Position> moves) {
+		// the maximum amount of reachable positions for a knight is 8
+		int minReachablePositions = 9;
+		Position bestMove = null;
+		for (Position move : moves) {
+			int reachablePositions = computeMoves(board, move).size();
+			if (reachablePositions < minReachablePositions) {
+				minReachablePositions = reachablePositions;
+				bestMove = move;
+			}
+		}
+		return bestMove;
+	}
+
 	private Collection<Position> computeMoves(Board board, Position currentPos) {
-		Collection<Position> nextPositions = new ArrayList<>(8);
+		Collection<Position> nextPositions = new LinkedList<>();
 		int row = currentPos.getRow();
 		int column = currentPos.getColumn();
 
@@ -62,20 +75,6 @@ public class KnightsTour {
 		if (board.isMoveValid(targetPosition)) {
 			consumer.accept(targetPosition);
 		}
-	}
-
-	private Position chooseNextMove(Board board, Collection<Position> moves) {
-		// the maximum amount of reachable positions for a knight is 8
-		int minReachablePositions = 9;
-		Position bestMove = null;
-		for (Position move : moves) {
-			int reachablePositions = computeMoves(board, move).size();
-			if (reachablePositions < minReachablePositions) {
-				minReachablePositions = reachablePositions;
-				bestMove = move;
-			}
-		}
-		return bestMove;
 	}
 
 }
