@@ -21,7 +21,7 @@ import nmu.jmh.knightstour.search.basic.KnightsTour;
 import nmu.jmh.knightstour.search.nocreation.KnightsTourNoObjectCreation;
 import nmu.jmh.knightstour.search.nocreation.PrimitiveBoard;
 
-@Warmup(iterations = 4)
+@Warmup(iterations = 3)
 @Measurement(iterations = 5)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Fork(value = 2)

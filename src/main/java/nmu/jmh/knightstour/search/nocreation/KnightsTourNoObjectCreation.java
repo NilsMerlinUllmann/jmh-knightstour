@@ -28,9 +28,8 @@ public class KnightsTourNoObjectCreation {
 	}
 
 	public boolean start() {
-		solve(board, startPosition.getRow(), startPosition.getColumn());
-		boolean validTourFound = board.isEveryPositionVisited();
-		return validTourFound;
+		solve(board, startPosition.row(), startPosition.column());
+		return board.isEveryPositionVisited();
 	}
 
 	private void solve(PrimitiveBoard board, int row, int column) {
@@ -39,8 +38,18 @@ public class KnightsTourNoObjectCreation {
 		Collection<Move> possibleMoves = computeMoves(board, row, column);
 		if (!possibleMoves.isEmpty()) {
 			Move bestMove = chooseNextMove(board, row, column, possibleMoves);
-			solve(board, row + bestMove.getRowOffset(), column + bestMove.getColumnOffset());
+			solve(board, row + bestMove.rowOffset(), column + bestMove.columnOffset());
 		}
+	}
+
+	private Collection<Move> computeMoves(PrimitiveBoard board, int row, int column) {
+		Collection<Move> possibleMoves = new ArrayList<Move>(8);
+		for (Move move : KNIGHT_MOVES) {
+			if (board.isMoveValid(row + move.rowOffset(), column + move.columnOffset())) {
+				possibleMoves.add(move);
+			}
+		}
+		return possibleMoves;
 	}
 
 	private Move chooseNextMove(PrimitiveBoard board, int row, int column, Collection<Move> moves) {
@@ -48,8 +57,7 @@ public class KnightsTourNoObjectCreation {
 		int minReachablePositions = 9;
 		Move bestMove = null;
 		for (Move move : moves) {
-			int reachablePositions = computeMoves(board, row + move.getRowOffset(), column + move.getColumnOffset())
-					.size();
+			int reachablePositions = computeMovesCount(board, row + move.rowOffset(), column + move.columnOffset());
 			if (reachablePositions < minReachablePositions) {
 				minReachablePositions = reachablePositions;
 				bestMove = move;
@@ -58,14 +66,14 @@ public class KnightsTourNoObjectCreation {
 		return bestMove;
 	}
 
-	private Collection<Move> computeMoves(PrimitiveBoard board, int row, int column) {
-		Collection<Move> possibleMoves = new ArrayList<Move>(8);
+	private int computeMovesCount(PrimitiveBoard board, int row, int column) {
+		int movesCount = 0;
 		for (Move move : KNIGHT_MOVES) {
-			if (board.isMoveValid(row + move.getRowOffset(), column + move.getColumnOffset())) {
-				possibleMoves.add(move);
+			if (board.isMoveValid(row + move.rowOffset(), column + move.columnOffset())) {
+				movesCount++;
 			}
 		}
-		return possibleMoves;
+		return movesCount;
 	}
 
 }

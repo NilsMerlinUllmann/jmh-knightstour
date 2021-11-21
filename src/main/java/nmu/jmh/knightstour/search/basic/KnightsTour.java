@@ -18,8 +18,7 @@ public class KnightsTour {
 
 	public boolean start() {
 		solve(board, startPosition);
-		boolean validTourFound = board.isEveryPositionVisited();
-		return validTourFound;
+		return board.isEveryPositionVisited();
 	}
 
 	private void solve(Board board, Position currentPosition) {
@@ -48,8 +47,8 @@ public class KnightsTour {
 
 	private Collection<Position> computeMoves(Board board, Position currentPos) {
 		Collection<Position> nextPositions = new LinkedList<>();
-		int row = currentPos.getRow();
-		int column = currentPos.getColumn();
+		int row = currentPos.row();
+		int column = currentPos.column();
 
 		// 1 down, 2 left
 		checkAndAddMove(board, new Position(row + 1, column - 2), nextPositions::add);

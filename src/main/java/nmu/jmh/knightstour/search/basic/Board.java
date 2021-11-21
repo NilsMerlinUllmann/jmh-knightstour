@@ -28,8 +28,8 @@ public class Board {
 	}
 
 	public void visit(Position position) {
-		state[position.getRow()][position.getColumn()] = VISITED;
-		moveOrder[position.getRow()][position.getColumn()] = moves++;
+		state[position.row()][position.column()] = VISITED;
+		moveOrder[position.row()][position.column()] = moves++;
 	}
 
 	public boolean isMoveValid(Position target) {
@@ -37,14 +37,14 @@ public class Board {
 	}
 
 	private boolean isPositionValid(Position position) {
-		return position.getRow() <= maxRowIndex //
-				&& position.getRow() >= 0 //
-				&& position.getColumn() <= maxColumnIndex //
-				&& position.getColumn() >= 0;
+		return position.row() <= maxRowIndex //
+				&& position.row() >= 0 //
+				&& position.column() <= maxColumnIndex //
+				&& position.column() >= 0;
 	}
 
 	private boolean isPositionUnvisited(Position position) {
-		return state[position.getRow()][position.getColumn()] == UNVISITED;
+		return state[position.row()][position.column()] == UNVISITED;
 	}
 
 	public boolean isEveryPositionVisited() {

@@ -17,10 +17,8 @@ class KnightsTourNoObjectCreationTest {
 		PrimitiveBoard board = new PrimitiveBoard(5, 5);
 		Position startPos = new Position(0, 0);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(true));
+		// act & assert
+		assertThat(tour.start(), is(true));
 	}
 
 	@Test
@@ -29,10 +27,8 @@ class KnightsTourNoObjectCreationTest {
 		PrimitiveBoard board = new PrimitiveBoard(5, 5);
 		Position startPos = new Position(0, 1);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(false));
+		// act & assert
+		assertThat(tour.start(), is(false));
 	}
 
 	@Test
@@ -41,10 +37,8 @@ class KnightsTourNoObjectCreationTest {
 		PrimitiveBoard board = new PrimitiveBoard(5, 5);
 		Position startPos = new Position(1, 0);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(false));
+		// act & assert
+		assertThat(tour.start(), is(false));
 	}
 
 	@Test
@@ -53,22 +47,18 @@ class KnightsTourNoObjectCreationTest {
 		PrimitiveBoard board = new PrimitiveBoard(8, 8);
 		Position startPos = new Position(0, 0);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(true));
+		// act & assert
+		assertThat(tour.start(), is(true));
 	}
-	
+
 	@Test
 	void test8x8_2_SHOULD_findSolution() {
 		// arrange
 		PrimitiveBoard board = new PrimitiveBoard(8, 8);
 		Position startPos = new Position(1, 3);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(true));
+		// act & assert
+		assertThat(tour.start(), is(true));
 	}
 
 	@Test
@@ -77,10 +67,8 @@ class KnightsTourNoObjectCreationTest {
 		PrimitiveBoard board = new PrimitiveBoard(8, 8);
 		Position startPos = new Position(7, 7);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(true));
+		// act & assert
+		assertThat(tour.start(), is(true));
 	}
 
 	@Test
@@ -89,10 +77,8 @@ class KnightsTourNoObjectCreationTest {
 		PrimitiveBoard board = new PrimitiveBoard(1, 5);
 		Position startPos = new Position(0, 1);
 		KnightsTourNoObjectCreation tour = new KnightsTourNoObjectCreation(board, startPos);
-		// act
-		tour.start();
-		// assert
-		assertThat(board.isEveryPositionVisited(), is(false));
+		// act & assert
+		assertThat(tour.start(), is(false));
 	}
 
 }
